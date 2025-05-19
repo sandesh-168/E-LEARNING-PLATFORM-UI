@@ -43,8 +43,9 @@ LearnEasy provides a solid foundation for any e-learning web project. With its c
 
 OUTPUT:
 
-![Image](https://github.com/user-attachments/assets/ae8360ae-1115-4e4c-aca9-7ed9c92e5d33)
+
 ![Image](https://github.com/user-attachments/assets/d97dac3e-ade9-44d1-8b26-f1aabe28f2df)
+![Image](https://github.com/user-attachments/assets/ae8360ae-1115-4e4c-aca9-7ed9c92e5d33)
 ![Image](https://github.com/user-attachments/assets/af3a8af9-1444-440b-9011-c0ca7c56df0d)
 ![Image](https://github.com/user-attachments/assets/fa1fb77a-3d1d-4f25-abd6-6af0adb450e8)
 ![Image](https://github.com/user-attachments/assets/dd97f3e7-a706-4278-a67b-2ed63b389d14)
