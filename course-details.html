@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - LearnEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gray: #adb5bd;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        nav a {
+            display: block;
+            color: var(--dark);
+            text-align: center;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+        
+        nav a:not(.logo)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        
+        nav a:hover::after {
+            width: 50%;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .course-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+        
+        .course-thumbnail {
+            width: 300px;
+            height: 200px;
+            border-radius: 1rem;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .course-info {
+            flex: 1;
+        }
+        
+        .course-info h2 {
+            color: var(--dark);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+        }
+        
+        .meta-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .course-description {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .instructor {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .instructor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--gray);
+        }
+        
+        .instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .instructor-info {
+            line-height: 1.3;
+        }
+        
+        .instructor-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .instructor-title {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .course-content-section {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            box-shadow: var(--shadow);
+            border-radius: 1rem;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .video-container {
+            background-color: var(--dark);
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .lesson-content {
+            padding: 2rem;
+        }
+        
+        .lesson-content h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .lesson-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+        
+        .lesson-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            font-weight: 500;
+            position: relative;
+            white-space: nowrap;
+        }
+        
+        .lesson-tab.active {
+            color: var(--primary);
+        }
+        
+        .lesson-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            margin-bottom: 2rem;
+        }
+        
+        .notes-section textarea {
+            width: 100%;
+            min-height: 150px;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .sidebar-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .sidebar-progress {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .progress-bar-container {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            width: 25%;
+        }
+        
+        .lessons-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .lesson-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .lesson-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .lesson-item.active {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .lesson-checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .lesson-item.completed .lesson-checkbox {
+            background-color: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+        
+        .lesson-title {
+            font-weight: 500;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        
+        .lesson-duration {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: var(--gray);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #95a5a6;
+            box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 1.5rem 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 992px) {
+            .course-content-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .course-thumbnail {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav .nav-links {
+                display: none;
+            }
+            
+            .lesson-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .lesson-tab {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>LearnEasy</h1>
+            <p>Expand your knowledge with our interactive courses</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                LearnEasy
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="courses.html">Courses</a>
+                <a href="progress.html">My Progress</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="course-header">
+            <div class="course-thumbnail" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3') center/cover;"></div>
+            <div class="course-info">
+                <h2 id="course-title">HTML Basics</h2>
+                <p class="course-description">Learn the fundamentals of HTML to create your first webpage. This course covers all the essential elements you need to know to start building websites.</p>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>2 hours total</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="far fa-user"></i>
+                        <span>Beginner level</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>Last updated: May 2025</span>
+                    </div>
+                </div>
+                <div class="instructor">
+                    <div class="instructor-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor">
+                    </div>
+                    <div class="instructor-info">
+                        <div class="instructor-name">John Smith</div>
+                        <div class="instructor-title">Web Development Instructor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="course-content-section">
+            <div class="main-content">
+                <div class="video-container">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qz0aGYrrlhU" title="HTML Tutorial for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <div class="lesson-content">
+                    <h3>Introduction to HTML</h3>
+                    <div class="lesson-tabs">
+                        <div class="lesson-tab active">Lesson Content</div>
+                        <div class="lesson-tab">Resources</div>
+                        <div class="lesson-tab">Discussion</div>
+                        <div class="lesson-tab">Notes</div>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a web page and consists of a series of elements that tell the browser how to display the content.</p>
+                        <p>HTML elements are represented by tags, written using angle brackets. Tags come in pairs, with the opening tag and the closing tag. The content goes between these tags.</p>
+                        <p>Example of an HTML element:</p>
+                        <pre><code>&lt;h1&gt;This is a heading&lt;/h1&gt;</code></pre>
+                        <p>In this lesson, you will learn:</p>
+                        <ul>
+                            <li>What HTML is and how it works</li>
+                            <li>Basic structure of an HTML document</li>
+                            <li>Understanding DOCTYPE and HTML versions</li>
+                            <li>How to set up your first HTML page</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="notes-section">
+                        <h4>Your Notes</h4>
+                        <textarea placeholder="Take notes here..."></textarea>
+                        <button class="btn">Save Notes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Course Content</h3>
+                </div>
+                
+                <div class="sidebar-progress">
+                    <div class="progress-text">
+                        <span>Your Progress</span>
+                        <span>25% complete</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="lessons-list">
+                    <div class="lesson-item active completed">
+                        <div class="lesson-checkbox">
+                            <i class="fas fa-check" style="font-size: 0.7rem;"></i>
+                        </div>
+                        <div class="lesson-title">Introduction to HTML</div>
+                        <div class="lesson-duration">15 min</div>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <div class="lesson-checkbox"></div>
+                        <div class="lesson-title">HTML Elements and Tags</div>
+                        <div class="lesson-duration">25 min</div>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <div class="lesson-checkbox"></div>
+                        <div class="lesson-title">Working with Text</div>
+                        <div class="lesson-duration">30 min</div>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <div class="lesson-checkbox"></div>
+                        <div class="lesson-title">Adding Images and Links</div>
+                        <div class="lesson-duration">40 min</div>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <div class="lesson-checkbox"></div>
+                        <div class="lesson-title">Creating Tables</div>
+                        <div class="lesson-duration">35 min</div>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <div class="lesson-checkbox"></div>
+                        <div class="lesson-title">HTML Forms</div>
+                        <div class="lesson-duration">45 min</div>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" disabled>Previous</button>
+                    <button class="btn">Next Lesson</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>LearnEasy is a simple e-learning platform dedicated to helping you master new skills and advance your career.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">All Courses</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Marine Drive, Mumbai</li>
+                    <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                    <li><i class="fas fa-envelope"></i> info@learneasy.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 LearnEasy. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // This would be where you'd add JavaScript for functionality
+        // For demonstration purposes, this is just a template
+    </script>
+</body>
+</html> 

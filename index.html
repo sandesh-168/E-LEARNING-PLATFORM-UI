@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnEasy - E-Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gray: #adb5bd;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        nav a {
+            display: block;
+            color: var(--dark);
+            text-align: center;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+        
+        nav a:not(.logo)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        
+        nav a:hover::after {
+            width: 50%;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-heading h2 {
+            display: inline-block;
+        }
+        
+        .section-heading p {
+            max-width: 700px;
+            margin: 1rem auto;
+            color: var(--gray);
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-image {
+            height: 180px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .html-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3') center/cover;
+        }
+        
+        .css-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?ixlib=rb-4.0.3') center/cover;
+        }
+        
+        .js-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-4.0.3') center/cover;
+        }
+        
+        .course-content {
+            padding: 1.5rem;
+        }
+        
+        .course-card h3 {
+            margin-top: 0;
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 1.5rem 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            nav .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>LearnEasy</h1>
+            <p>Discover your potential with our interactive e-learning platform. Start your learning journey today!</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                LearnEasy
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="courses.html">Courses</a>
+                <a href="progress.html">My Progress</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Enhance Your Skills</h2>
+                <p>Access high-quality courses designed to help you master in-demand skills at your own pace. Our interactive platform makes learning engaging and effective.</p>
+                <p>Whether you're a beginner or looking to advance your knowledge, we have courses tailored for every skill level.</p>
+                <a href="courses.html" class="btn">Browse Courses</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1610484826967-09c5720778c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Students learning online">
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-heading">
+                <h2>Featured Courses</h2>
+                <p>Explore our most popular courses and start learning today</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image html-bg"></div>
+                    <div class="course-content">
+                        <h3>HTML Basics</h3>
+                        <p>Learn the fundamentals of HTML to create your first webpage.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 2 hours</span>
+                            <span><i class="far fa-user"></i> Beginner</span>
+                        </div>
+                        <button class="btn course-btn" data-course="html">Start Learning</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image css-bg"></div>
+                    <div class="course-content">
+                        <h3>CSS for Beginners</h3>
+                        <p>Style your webpages with CSS and make them look amazing.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 3 hours</span>
+                            <span><i class="far fa-user"></i> Beginner</span>
+                        </div>
+                        <button class="btn course-btn" data-course="css">Start Learning</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image js-bg"></div>
+                    <div class="course-content">
+                        <h3>JavaScript Introduction</h3>
+                        <p>Add interactivity to your websites with JavaScript.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 5 hours</span>
+                            <span><i class="far fa-user"></i> Intermediate</span>
+                        </div>
+                        <button class="btn course-btn" data-course="javascript">Start Learning</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1526379879527-8559ecfcb0c8?ixlib=rb-4.0.3') center/cover;"></div>
+                    <div class="course-content">
+                        <h3>Python Programming</h3>
+                        <p>Learn the basics of Python programming language.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 8 hours</span>
+                            <span><i class="far fa-user"></i> Beginner</span>
+                        </div>
+                        <button class="btn course-btn" data-course="python">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-heading">
+                <h2>Why Choose LearnEasy?</h2>
+                <p>We provide an exceptional learning experience tailored to your needs</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Learn Anywhere</h3>
+                    <p>Access our courses from any device, anytime. Learn at your own pace from anywhere in the world.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Get Certified</h3>
+                    <p>Earn certificates upon course completion to showcase your new skills to employers.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry professionals with real-world experience in their field.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>LearnEasy is a simple e-learning platform dedicated to helping you master new skills and advance your career.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">All Courses</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Marine Drive, Mumbai</li>
+                    <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                    <li><i class="fas fa-envelope"></i> info@learneasy.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 LearnEasy. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <div id="courseModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:1rem; max-width:400px; width:90vw; padding:2rem; position:relative; box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+            <button id="closeModal" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <div id="modalMeta" style="color:#888; font-size:0.95rem; margin-top:1rem;"></div>
+        </div>
+    </div>
+    <script>
+    const courseDetails = {
+        css: {
+            title: 'CSS for Beginners',
+            desc: 'Style your webpages with CSS and make them look amazing. This course covers selectors, the box model, layout, colors, fonts, and more.',
+            meta: '<b>Duration:</b> 3 hours<br><b>Level:</b> Beginner'
+        },
+        javascript: {
+            title: 'JavaScript Introduction',
+            desc: 'Add interactivity to your websites with JavaScript. Learn variables, functions, DOM manipulation, and events.',
+            meta: '<b>Duration:</b> 5 hours<br><b>Level:</b> Intermediate'
+        },
+        python: {
+            title: 'Python Programming',
+            desc: 'Learn the basics of Python programming language. Covers syntax, data types, control flow, functions, and basic projects.',
+            meta: '<b>Duration:</b> 8 hours<br><b>Level:</b> Beginner'
+        }
+    };
+    document.querySelectorAll('.course-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const course = this.getAttribute('data-course');
+            if (courseDetails[course]) {
+                document.getElementById('modalTitle').innerText = courseDetails[course].title;
+                document.getElementById('modalDesc').innerText = courseDetails[course].desc;
+                document.getElementById('modalMeta').innerHTML = courseDetails[course].meta;
+                document.getElementById('courseModal').style.display = 'flex';
+            }
+        });
+    });
+    document.getElementById('closeModal').onclick = function() {
+        document.getElementById('courseModal').style.display = 'none';
+    };
+    window.onclick = function(event) {
+        if (event.target === document.getElementById('courseModal')) {
+            document.getElementById('courseModal').style.display = 'none';
+        }
+    };
+    </script>
+</body>
+</html>
